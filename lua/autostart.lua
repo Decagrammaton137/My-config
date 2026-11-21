@@ -1,0 +1,6 @@
+hl.on("hyprland.start", function()
+    hl.exec_cmd("waybar")
+    hl.exact_cmd("awww-daemon")
+    hl.exec_cmd("awww img ~/Pictures/Wallpaper/fahh.png")
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+end)

@@ -1,0 +1,64 @@
+
+# --- MONITOR ---
+monitor=,preferred,auto,1
+input {
+    kb_layout = us
+    follow_mouse = 1
+}
+
+# --- TAMPILAN ---
+general {
+    gaps_in = 0
+    gaps_out = 0
+    border_size = 0
+    layout = dwindle
+}
+
+decoration {
+    rounding = 0
+    blur {
+        enabled = false
+    }
+}
+
+# Fix syntax windowrule versi baru
+# windowrule = suppressevent maximize, .*
+
+# --- AUTOSTART WAYBAR ---
+exec-once = waybar
+
+
+
+
+
+# --- SHORTCUT KEYBINDS ---
+$mainMod = SUPER
+
+bind = $mainMod, Return, exec, kitty
+bind = $mainMod, Escape, killactive,
+bind = $mainMod, Q, killactive,
+bind = $mainMod, tab, cyclenext,
+#bind = $mainMod, shift, 
+
+# --- SCREENSHOT ---
+bind = , Print, exec, grim -g "$(slurp)" - | wl-copy
+bind = $mainMod SHIFT, Print, exec, grim - | wl-copy
+
+# --- BRIGHTNESS ---
+binde = , XF86MonBrightnessUp, exec, brightnessctl set +5%
+binde = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
+exec-once = gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+# --- AUDIO ---
+binde = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+binde = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+# --- WINDOW ---
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+# --- WORKSPACE ---
+bind = $mainMod, s, togglespecialworkspace, magic
+bind = $mainMod shift, s, movetoworkspace, special:magic
+bind = $mainMod alt, s, movetoworkspace, e+0
